@@ -1,0 +1,1 @@
+export const missingImg = "https://cdn.pixabay.com/photo/2022/12/14/13/43/snow-7655439_1280.png"

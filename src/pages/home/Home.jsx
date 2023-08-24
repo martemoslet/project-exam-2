@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import VenueList from "../../components/venues/VenueList"
 import Spinner from 'react-bootstrap/Spinner';
+import SearchBar from "../../components/search/Search";
+import SearchList from "../../components/search/SearchList";
 
 
 export default function Home() {
@@ -28,6 +30,8 @@ export default function Home() {
     getData(`https://api.noroff.dev/api/v1/holidaze/venues/`);
   }, []);
 
+  const [searchResults, setSearchResults] = useState([]);
+
   if (isLoading || !venues) {
     return <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -39,6 +43,12 @@ export default function Home() {
   }
 
   return (
+    <>
+    <div className="search">
+        <SearchBar setSearchResults={setSearchResults} />
+        <SearchList searchResults={searchResults} />
+      </div>
     <VenueList venues={venues} />
+    </>
   );
 }

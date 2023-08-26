@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from 'react-bootstrap/Col';
 import { FaStar } from 'react-icons/fa';
-import Placeholder from 'react-bootstrap/Placeholder';
 import { missingImg } from "../../constants";
 
 const onImageError = (e) => {

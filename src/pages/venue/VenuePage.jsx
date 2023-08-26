@@ -38,7 +38,7 @@ export default function VenuePage() {
   if (isError) {
     return <div>Error</div>;
   }
-
+  console.log(data)
   return (
       <SingleVenue key={data.id} {...data} />
   );

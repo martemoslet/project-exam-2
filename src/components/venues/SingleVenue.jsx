@@ -3,12 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from "react-bootstrap/Container";
 import { missingImg } from "../../constants";
-import { FaStar } from 'react-icons/fa';
-import { FaUserFriends } from 'react-icons/fa';
-import { FaUtensils } from 'react-icons/fa';
-import { FaWifi } from 'react-icons/fa';
-import { FaCar } from 'react-icons/fa';
-import { FaDog } from 'react-icons/fa';
+import { FaStar, FaUserFriends, FaUtensils, FaWifi, FaCar, FaDog } from 'react-icons/fa';
 
 const onImageError = (e) => {
   e.target.src = missingImg

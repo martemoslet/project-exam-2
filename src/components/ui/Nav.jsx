@@ -14,14 +14,8 @@ export default function Navbarnav() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/">Login</Nav.Link>
-            <NavDropdown title="Register" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#">Register as guest</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#">
-                Register as host
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href="/loginPage">Login</Nav.Link>
+            <Nav.Link href="/registerPage">Register</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

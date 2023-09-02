@@ -1,7 +1,13 @@
 import { useState } from "react";
+import * as storage from "../../components/auth/storage"
+import { redirect } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 
-export default function Login() {
+
+export default function Login(profile) {
+const navigate = useNavigate();
+const refresh = () => window.location.reload(true)
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
@@ -13,15 +19,29 @@ email,
 password,
 };
 
-fetch("https://api.noroff.dev/api/v1/holidaze/auth/login", {
+const response = await fetch("https://api.noroff.dev/api/v1/holidaze/auth/login", {
     headers: {
         "Content-Type": "application/json",
     },
     method: 'POST',
     body: JSON.stringify(body),
 });
-}
 
+const { accessToken, ...user } = await response.json();
+
+storage.save("token", accessToken);
+storage.save("profile", user);
+
+if (response.status === 200) {
+    navigate('/')
+    refresh();
+  //console.log(profile)
+} else {
+  alert("Wrong email or password");
+  storage.remove("token");
+  storage.remove("profile");
+}
+}
 
 function onEmailChange(event) {
 setEmail(event.target.value);

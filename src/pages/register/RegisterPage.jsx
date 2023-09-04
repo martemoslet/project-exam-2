@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { authFetch } from "../../components/auth/authFetch";
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
 const [avatar, setAvatar] = useState('');
 const [password, setPassword] = useState('');
+const [venueManager, setVenueManager] = useState(false);
+const navigate = useNavigate();
 
 
 async function onFormSubmit(event) {
@@ -14,20 +18,24 @@ name,
 email,
 avatar,
 password,
+venueManager,
 };
 
-const response = await fetch('https://api.noroff.dev/api/v1/holidaze/auth/register', {
+const response = await authFetch('https://api.noroff.dev/api/v1/holidaze/auth/register', {
     headers: {
         "Content-Type": "application/json",
     },
     method: 'POST',
-    body: JSON.stringify(profile),
+    body: JSON.stringify(profile)
 });
+
 const result = await response.json()
 if (response.status === 201 || 204) {
-    alert("Registration successful");
+    //alert("Registration successful");
     console.log(result)
+    navigate('/loginPage')
     return result;
+    
   } else {
     alert("Something went wrong");
   }
@@ -46,6 +54,9 @@ setAvatar(event.target.value);
 function onPasswordChange(event) {
 setPassword(event.target.value);
 }
+function onVenueManagerChange(event) {
+    setVenueManager(event.target.value);
+    }
 
 
 return (
@@ -67,8 +78,9 @@ return (
 
 
 <div>
-<input type="checkbox" id='venueManager' className='me-2' />
-<label htmlFor="venueManager">I want to register as a venue manager</label>
+<input name="venueManager" type="checkbox" id='venueManager' className='me-2' onChange={onVenueManagerChange} 
+value={venueManager} />
+<label htmlFor="venueManager" id="venueManager">I want to register as a venue manager</label>
 </div>
 
 

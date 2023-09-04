@@ -8,11 +8,12 @@ import * as storage from "../auth/storage"
 import { Link } from 'react-router-dom';
 import Logout from '../profile/Logout';
 import { useState, createContext } from "react";
+import { FaRegUser } from 'react-icons/fa';
+
 
 const profile = storage.load("profile");
 
 export default function Navbarnav() {
-
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -20,16 +21,20 @@ export default function Navbarnav() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/profilePage">Profile</Nav.Link>
-            <Nav.Link href="/registerPage">Register</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>            
 
-            { profile ? 
-            <Nav.Link href="#"><Logout /></Nav.Link>
+            { profile ?
+            <div>
+              <Link to={`/profilePage/${profile.name}`}><FaRegUser size={20} className="me-2" /></Link>
+              <Nav.Link href="#"><Logout /></Nav.Link>
+            </div> 
+            
             :
-            <Nav.Link href="/loginPage">Login</Nav.Link> }
-            
-            
+            <div>
+            <Nav.Link href="/loginPage">Login</Nav.Link>
+            <Nav.Link href="/registerPage">Register</Nav.Link>
+            </div>}
+
           </Nav>
         </Navbar.Collapse>
       </Container>

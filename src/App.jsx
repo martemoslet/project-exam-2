@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import VenuePage from "./pages/venue/VenuePage";
 import Register from "./pages/register/RegisterPage"
 import Login from "./pages/login/LoginPage";
+import ProfilePage from "./pages/profile/ProfilePage";
 
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="VenuePage/:id" element={<VenuePage />} />
         <Route path="registerPage" element={<Register />} />
         <Route path="loginPage" element={<Login />} />
+        <Route path="profilePage/:name" element={<ProfilePage />} />
       </Route>
     </Routes>
   );

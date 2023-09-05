@@ -27,7 +27,7 @@ export default function Home() {
       }
     }
 
-    getData(`https://api.noroff.dev/api/v1/holidaze/venues/`);
+    getData(`https://api.noroff.dev/api/v1/holidaze/venues/?sort=created&sortOrder=desc`);
   }, []);
 
   const [searchResults, setSearchResults] = useState([]);

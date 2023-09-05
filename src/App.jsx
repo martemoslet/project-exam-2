@@ -5,6 +5,7 @@ import VenuePage from "./pages/venue/VenuePage";
 import Register from "./pages/register/RegisterPage"
 import Login from "./pages/login/LoginPage";
 import ProfilePage from "./pages/profile/ProfilePage";
+import AddVenue from "./pages/venue/AddVenuePage";
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="registerPage" element={<Register />} />
         <Route path="loginPage" element={<Login />} />
         <Route path="profilePage/:name" element={<ProfilePage />} />
+        <Route path="addVenuePage" element={<AddVenue />} />
       </Route>
     </Routes>
   );

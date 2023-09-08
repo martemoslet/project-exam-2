@@ -6,6 +6,8 @@ import { Spinner } from "react-bootstrap";
 import { useEffect } from "react";
 import UserProfile from "../../components/profile/Profile";
 import VenueManager from "./VenueManager";
+import YourVenues from "./YourVenues";
+import YourBookings from "./YourBookings";
 
 
 export default function ProfilePage() {
@@ -31,7 +33,7 @@ export default function ProfilePage() {
         }
       }
   
-      getData(`https://api.noroff.dev/api/v1/holidaze/profiles/${name}`);
+      getData(`https://api.noroff.dev/api/v1/holidaze/profiles/${name}/?_venue=true/?_bookings=true`);
     }, [name]);
   
     if (isLoading || !data) {
@@ -50,6 +52,10 @@ return (
 <div><UserProfile key={data.name} {...data} />
 <AvatarChange />
 { data.venueManager === false ? <VenueManager /> : "" }
+<h2>Upcoming bookings</h2>
+<YourBookings />
+<h3>Your venues</h3>
+<YourVenues />
 </div>
 )
 }

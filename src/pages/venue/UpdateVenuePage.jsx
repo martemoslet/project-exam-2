@@ -86,7 +86,7 @@ async function onSubmit(data) {
 return (
     <>
 <form className="contact-form" onSubmit={handleSubmit(onSubmit)} id="registerForm">
-<h1>Add venue</h1>
+<h1>Update venue</h1>
 <label htmlFor="name">Venue name</label>
 <input {...register("name")} />
 <p>{errors.name?.message}</p>

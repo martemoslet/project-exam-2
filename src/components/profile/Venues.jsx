@@ -6,6 +6,7 @@ import { FaStar } from 'react-icons/fa';
 import { missingImg } from "../../constants";
 import Bookings from "../bookings/Bookings";
 
+
 const onImageError = (e) => {
     e.target.src = missingImg
   }
@@ -28,6 +29,7 @@ export function ProfileVenues({ venueData }) {
                 </p>
                 <p>Bookings:</p>
                <Bookings bookings={venueData.bookings} />
+               <Link to={`/updateVenuePage/${venueData.id}`}><button>Edit venue</button></Link>
                     </Col>
                 </Row>
 

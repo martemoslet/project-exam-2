@@ -112,7 +112,7 @@ return (
 <input {...register("location.continent")} type="location.continent" />
 
 <label htmlFor="description">Description</label>
-<input {...register("description")} />
+<textarea {...register("description")} />
 <p>{errors.description?.message}</p>
 
 <label htmlFor="media">Media</label>

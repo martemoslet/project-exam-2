@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { useEffect } from "react";
-import ProfileVenues from "../../components/profile/Venues";
 import VenuesOnProfile from "../../components/profile/VenuesOnProfile";
-import BookingsOnProfile from "../../components/profile/BookingsOnProfile";
 
 
 export default function YourVenues() {

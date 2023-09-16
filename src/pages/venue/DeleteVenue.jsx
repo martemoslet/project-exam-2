@@ -27,7 +27,6 @@ export default function RemoveVenue() {
           } else {
             alert("Something went wrong");
           }
-
     }
     
     return (

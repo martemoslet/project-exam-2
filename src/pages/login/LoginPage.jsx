@@ -1,6 +1,5 @@
 import { useState } from "react";
 import * as storage from "../../components/auth/storage"
-import { redirect } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -35,7 +34,6 @@ storage.save("profile", user);
 if (response.status === 200) {
     navigate('/')
     refresh();
-  //console.log(profile)
 } else {
   alert("Wrong email or password");
   storage.remove("token");

@@ -27,11 +27,11 @@ export default function SingleVenue({ id, media, name, price, rating, location, 
      <FaUtensils size={15} className="me-2" /> {meta.breakfast > 0 ? `Breakfast included` : `Breakfast not included`}<br></br>
      <FaWifi size={15} className="me-2" /> {meta.wifi > 0 ? `Fast wifi` : `No wifi`}<br></br>
      <FaCar size={15} className="me-2" /> {meta.parking > 0 ? `Parking on site` : `No parking`}<br></br>
-     <FaDog size={15} className="me-2" /> {meta.pets > 0 ? `Pets are allowed` : `No pets allowed`}<br></br> </p>
+     <FaDog size={15} className="me-2" /> {meta.pets > 0 ? `Pets are allowed` : `No pets allowed`}<br></br>
+    </p>
      </div>
         </Col>
       </Row>
-      
     </Container>
   );
 }

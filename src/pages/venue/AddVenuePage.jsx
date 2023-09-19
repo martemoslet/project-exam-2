@@ -1,147 +1,213 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { authFetch } from "../../components/auth/authFetch";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import styles from "../../components/ui/Button.module.css";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Col from "react-bootstrap/Col";
 
 const schema = yup
-.object({
-name: yup
-.string()
-.required("Please enter your full name"),
-description: yup
-.string()
-.required(),
-media: yup
-.string(),
-price: yup
-.number()
-.required("Please enter a price"),
-maxGuests: yup
-.number()
-.integer()
-.required(),
-rating: yup
-.number(),
-meta: yup
-.object({
-    wifi: yup
-    .boolean(),
-    parking: yup
-    .boolean(),
-    breakfast: yup
-    .boolean(),
-    pets: yup
-    .boolean(),
-}),
-location: yup
-.object({
-    address: yup
-    .string(),
-    city: yup
-    .string(),
-    zip: yup
-    .string(),
-    country: yup
-    .string(),
-    continent: yup
-    .string(),
-}),
-
-})
-.required();
-
+  .object({
+    name: yup.string().required("Please enter a venue name"),
+    description: yup.string().required("Please enter a description"),
+    media: yup.string(),
+    price: yup.number().required().typeError("Please enter a price"),
+    maxGuests: yup
+      .number()
+      .integer()
+      .required()
+      .typeError("Max guests must be a number"),
+    rating: yup.number(),
+    meta: yup.object({
+      wifi: yup.boolean(),
+      parking: yup.boolean(),
+      breakfast: yup.boolean(),
+      pets: yup.boolean(),
+    }),
+    location: yup.object({
+      address: yup.string(),
+      city: yup.string(),
+      zip: yup.string(),
+      country: yup.string(),
+      continent: yup.string(),
+    }),
+  })
+  .required();
 
 export default function AddVenue() {
-const {
-register,
-handleSubmit,
-formState: { errors },
-} = useForm({
-resolver: yupResolver(schema),
-});
-//const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const navigate = useNavigate();
 
-
-
-async function onSubmit(data) {
+  async function onSubmit(data) {
     data.media = data.media.split(",");
-  const response = await authFetch('https://api.noroff.dev/api/v1/holidaze/venues', {
-    headers: {
-    "Content-Type": "application/json",
-    },
-    method: 'POST',
-    body: JSON.stringify(data)
-    });
-    
-    
-    const result = await response.json()
+    const response = await authFetch(
+      "https://api.noroff.dev/api/v1/holidaze/venues",
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+
+    const result = await response.json();
     if (response.status === 201 || 204) {
-    //alert("Registration successful");
-    console.log(result)
-    //navigate('/loginPage')
-    return result;
+      console.log(result);
+      navigate("/");
+      return result;
     } else {
-    alert("Something went wrong");
+      alert("Something went wrong");
     }
-    
+  }
 
-}
+  return (
+    <Container className="pt-4 pb-4">
+      <h1 className="text-center">Add venue</h1>
+      <Form
+        className="contact-form"
+        onSubmit={handleSubmit(onSubmit)}
+        id="registerForm"
+      >
+        <Row xs={1} sm={1} lg={2} className="justify-content-center">
+          <Form.Group>
+            <Form.Control {...register("name")} placeholder="Venue name" />
+            <p style={{ color: "red" }} className="pt-1">
+              {errors.name?.message}
+            </p>
 
+            <p className="ps-2">Location</p>
+            <Form.Control
+              {...register("location.address")}
+              type="location.address"
+              placeholder="Address"
+              className="mb-2"
+            />
 
-return (
-<form className="contact-form" onSubmit={handleSubmit(onSubmit)} id="registerForm">
-<h1>Add venue</h1>
-<label htmlFor="name">Venue name</label>
-<input {...register("name")} />
-<p>{errors.name?.message}</p>
+            <Form.Control
+              {...register("location.zip")}
+              type="location.zip"
+              placeholder="Zip code"
+              className="mb-2"
+            />
 
-<label htmlFor="location.address">Address</label>
-<input {...register("location.address")} type="location.address" />
+            <Form.Control
+              {...register("location.city")}
+              type="location.city"
+              placeholder="City"
+              className="mb-2"
+            />
 
-<label htmlFor="location.city">City</label>
-<input {...register("location.city")} type="location.city" />
+            <Form.Control
+              {...register("location.country")}
+              type="location.country"
+              placeholder="Country"
+              className="mb-2"
+            />
 
-<label htmlFor="location.zip">Zip code</label>
-<input {...register("location.zip")} type="location.zip" />
+            <Form.Control
+              {...register("location.continent")}
+              type="location.continent"
+              placeholder="Continent"
+            />
+            <hr className="mb-4 mt-4"></hr>
 
-<label htmlFor="location.country">Country</label>
-<input {...register("location.country")} type="location.country" />
+            <Form.Control
+              {...register("description")}
+              placeholder="Description"
+            />
+            <p style={{ color: "red" }} className="pt-1">
+              {errors.description?.message}
+            </p>
 
-<label htmlFor="location.continent">Continent</label>
-<input {...register("location.continent")} type="location.continent" />
+            <Form.Control
+              type="url"
+              {...register("media")}
+              placeholder="Images"
+              className="mb-2"
+            />
+            <Col xs={3}>
+              <Form.Control
+                {...register("maxGuests")}
+                type="maxGuests"
+                placeholder="Max guests"
+              />
+              <p style={{ color: "red" }} className="pt-1">
+                {errors.maxGuests?.message}
+              </p>
+            </Col>
 
-<label htmlFor="description">Description</label>
-<textarea {...register("description")} />
-<p>{errors.description?.message}</p>
+            <Col xs={3}>
+              <Form.Control
+                {...register("rating")}
+                type="rating"
+                placeholder="Rating"
+                className="mb-2"
+              />
+            </Col>
 
-<label htmlFor="media">Media</label>
-<input type="url" {...register("media")} />
+            <Col xs={3}>
+              <Form.Control
+                {...register("price")}
+                type="price"
+                placeholder="Price"
+              />
+            </Col>
+            <p style={{ color: "red" }} className="pt-1">
+              {errors.price?.message}
+            </p>
 
-<label htmlFor="price">Price</label>
-<input {...register("price")} type="price" />
-<p>{errors.price?.message}</p>
+            <hr className="mb-4 mt-4"></hr>
 
-<label htmlFor="maxGuests">Max guests</label>
-<input {...register("maxGuests")} type="maxGuests" />
-<p>{errors.maxGuests?.message}</p>
+            <Form.Check
+              id="switch"
+              type="switch"
+              {...register("meta.wifi")}
+              label="Wifi included"
+              className="mb-2"
+            />
 
-<label htmlFor="rating">Rating</label>
-<input {...register("rating")} type="rating" />
+            <Form.Check
+              id="switch"
+              type="switch"
+              {...register("meta.parking")}
+              label="Parking on site"
+              className="mb-2"
+            />
 
-<label htmlFor="meta.wifi">Wifi included</label>
-<input type="checkbox" className='' {...register("meta.wifi")} />
+            <Form.Check
+              id="switch"
+              type="switch"
+              {...register("meta.breakfast")}
+              label="Breakfast included"
+              className="mb-2"
+            />
 
-<label htmlFor="meta.parking">Parking on site</label>
-<input type="checkbox" className='' {...register("meta.parking")} />
-
-<label htmlFor="meta.breakfast">Breakfast included</label>
-<input type="checkbox" className='' {...register("meta.breakfast")} />
-
-<label htmlFor="meta.pets">Pets allowed</label>
-<input type="checkbox" className='' {...register("meta.pets")} />
-
-<input type="submit" />
-</form>
-);
+            <Form.Check
+              id="switch"
+              type="switch"
+              {...register("meta.pets")}
+              label="Pets allowed"
+              className="mb-4"
+            />
+            <div className="d-md-flex justify-content-md-end">
+              <Button type="submit" className={styles.primary}>
+                Add venue
+              </Button>
+            </div>
+          </Form.Group>
+        </Row>
+      </Form>
+    </Container>
+  );
 }

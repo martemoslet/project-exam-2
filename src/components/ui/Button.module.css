@@ -1,6 +1,8 @@
 .primary,
 .secondary,
-.venueManager {
+.venueManager,
+.addBtn,
+.removeBtn {
   border: 0;
   background: none;
   background-color: #6B19CB;
@@ -34,4 +36,13 @@
     padding: 10px 20px 10px 20px;
     width: 200px;
     border: none;
+}
+
+.removeBtn {
+  background-color: #008E5D;
+  border: none;
+}
+
+.removeBtn:hover {
+  background-color: #007b50;
 }

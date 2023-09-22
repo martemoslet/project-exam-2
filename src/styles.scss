@@ -1,3 +1,7 @@
+@import "./variables";
+
+$light: #ffffff;
+
 h1,
 h2,
 h3 {
@@ -20,4 +24,9 @@ a {
 
 #switch:checked {
   background-color: #6B19CB;
+}
+
+.navLogo {
+  color:#6B19CB;
+  font-weight: 500;
 }

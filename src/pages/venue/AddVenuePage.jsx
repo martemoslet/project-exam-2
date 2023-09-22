@@ -142,10 +142,10 @@ export default function AddVenue() {
                 type="maxGuests"
                 placeholder="Max guests"
               />
-              <p style={{ color: "red" }} className="pt-1">
-                {errors.maxGuests?.message}
-              </p>
             </Col>
+            <p style={{ color: "red" }} className="pt-1">
+              {errors.maxGuests?.message}
+            </p>
 
             <Col xs={3}>
               <Form.Control
@@ -200,11 +200,9 @@ export default function AddVenue() {
               label="Pets allowed"
               className="mb-4"
             />
-            <div className="d-md-flex justify-content-md-end">
-              <Button type="submit" className={styles.primary}>
-                Add venue
-              </Button>
-            </div>
+            <Button type="submit" className={styles.primary}>
+              Add venue
+            </Button>
           </Form.Group>
         </Row>
       </Form>

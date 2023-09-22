@@ -56,7 +56,12 @@ export default function AvatarChange(profileData) {
           />
         </Col>
         <Col>
-          <Button type="submit" className={styles.secondary} size="sm">
+          <Button
+            variant="secondary"
+            type="submit"
+            className={styles.secondary}
+            size="sm"
+          >
             Update
           </Button>
         </Col>

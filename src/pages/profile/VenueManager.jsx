@@ -50,7 +50,7 @@ export default function VenueManager(profileData) {
         value={venueManager}
         hidden
       />
-      <Button type="submit" className={styles.secondary}>
+      <Button variant="secondary" type="submit" className={styles.secondary}>
         I want to become a venue manager
       </Button>
     </form>

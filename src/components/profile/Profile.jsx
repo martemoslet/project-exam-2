@@ -8,6 +8,11 @@ import VenueManager from "../../pages/profile/VenueManager";
 import YourBookings from "../../pages/profile/YourBookings";
 import YourVenues from "../../pages/profile/YourVenues";
 import { FaPlus } from "react-icons/fa";
+import { missingProfileImg } from "../../constants";
+
+const onImageError = (e) => {
+  e.target.src = missingProfileImg;
+};
 
 export default function UserProfile({
   avatar,
@@ -23,7 +28,8 @@ export default function UserProfile({
           <h1>{name}</h1>
           <p>{email}</p>
           <img
-            src={avatar}
+            onError={onImageError}
+            src={avatar ? avatar : missingProfileImg}
             alt={name}
             height={120}
             width={120}

@@ -3,10 +3,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { FaStar } from "react-icons/fa";
 import { missingImg } from "../../constants";
-import Bookings from "../bookings/Bookings";
 import Container from "react-bootstrap/Container";
-import styles from "../../components/ui/Button.module.css";
-import Button from "react-bootstrap/Button";
 
 const onImageError = (e) => {
   e.target.src = missingImg;

@@ -52,7 +52,6 @@ export default function OwnerProfile() {
   if (isError) {
     return <div>Error</div>;
   }
-  console.log(data);
 
   return (
     <Container>

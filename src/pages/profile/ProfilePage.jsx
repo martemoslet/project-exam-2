@@ -44,7 +44,6 @@ export default function ProfilePage() {
   if (isError) {
     return <div>Error</div>;
   }
-  console.log(data);
 
   return <UserProfile key={data.name} {...data} />;
 }

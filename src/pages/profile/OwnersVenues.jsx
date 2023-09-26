@@ -42,7 +42,6 @@ export default function OwnersVenues() {
   if (isError) {
     return <div>Error</div>;
   }
-  console.log(venues);
 
   return <VenuesOnOwner venues={venues} />;
 }

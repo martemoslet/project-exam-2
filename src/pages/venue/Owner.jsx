@@ -51,7 +51,7 @@ export default function Owner() {
   if (isError) {
     return <div>Error</div>;
   }
-  console.log(data);
+
   return (
     <Container className="mb-4">
       <hr className="mt-4 mb-4"></hr>

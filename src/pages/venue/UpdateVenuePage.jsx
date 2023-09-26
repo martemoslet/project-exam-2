@@ -39,11 +39,7 @@ const schema = yup
   .required();
 
 export default function UpdateVenue() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
   let { id } = useParams();
@@ -84,7 +80,6 @@ export default function UpdateVenue() {
   if (isError) {
     return <div>Error</div>;
   }
-  console.log(data);
 
   async function onSubmit(data) {
     data.media = data.media.split(",");

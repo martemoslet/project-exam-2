@@ -1,7 +1,10 @@
 import SingleVenue from "../../components/venues/SingleVenue";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Spinner from 'react-bootstrap/Spinner';
+import Spinner from "react-bootstrap/Spinner";
+// import BookVenue from "./BookVenue";
+import Calendar from "../../components/venues/Calendar";
+import Owner from "./Owner";
 
 export default function VenuePage() {
   const [data, setData] = useState(null);
@@ -26,20 +29,30 @@ export default function VenuePage() {
       }
     }
 
-    getData(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`);
+    getData(
+      `https://api.noroff.dev/api/v1/holidaze/venues/${id}/?_bookings=true`
+    );
   }, [id]);
 
   if (isLoading || !data) {
-    return <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-            </Spinner>;
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
   }
 
   if (isError) {
     return <div>Error</div>;
   }
-  console.log(data)
+  console.log(data);
+
   return (
+    <>
       <SingleVenue key={data.id} {...data} />
+      <Calendar />
+
+      <Owner />
+    </>
   );
 }

@@ -11,8 +11,11 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import * as storage from "../auth/storage";
 
 const action = "/bookings";
+
+const profile = storage.load("profile");
 
 export default function Calendar() {
   let { id } = useParams();
@@ -97,54 +100,61 @@ export default function Calendar() {
   return (
     <Container className="mt-4">
       <h1 className="text-center pt-4 pb-4 calendar">Book your stay</h1>
-      <Form onSubmit={onSubmit}>
-        <Form.Control value={id} id="id" readOnly hidden />
-        <Row xs={1} sm={1} lg={1} className="justify-content-center">
-          <Col>
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              startDate={startDate}
-              endDate={endDate}
-              minDate={new Date()}
-              id="startDate"
-              value={startDate}
-              inline
-              excludeDateIntervals={excludeDateIntervals}
-            />
-          </Col>
-          <Col>
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate}
-              id="endDate"
-              value={endDate}
-              inline
-              excludeDateIntervals={excludeDateIntervals}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={4} md={2}>
-            <Form.Label>Guests</Form.Label>
-            <Form.Control
-              id="guests"
-              onChange={guestsChange}
-              type="number"
-              className="mb-3 guests"
-              max={data.maxGuests}
-              min="1"
-            />
-
-            <Button type="submit" className={styles.primary}>
-              Book venue
-            </Button>
-          </Col>
-        </Row>
-      </Form>
+      <div className="calendar">
+        <Form onSubmit={onSubmit}>
+          <Form.Control value={id} id="id" readOnly hidden />
+          <Row xs={1} sm={1} lg={1} className="justify-content-center">
+            <Col>
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                startDate={startDate}
+                endDate={endDate}
+                minDate={new Date()}
+                id="startDate"
+                value={startDate}
+                inline
+                excludeDateIntervals={excludeDateIntervals}
+              />
+            </Col>
+            <Col>
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate}
+                id="endDate"
+                value={endDate}
+                inline
+                excludeDateIntervals={excludeDateIntervals}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={4} md={2}>
+              <Form.Label>Guests</Form.Label>
+              <Form.Control
+                id="guests"
+                onChange={guestsChange}
+                type="number"
+                className="mb-3 guests"
+                max={data.maxGuests}
+                min="1"
+              />
+              {profile ? (
+                <Button type="submit" className={styles.primary}>
+                  Book venue
+                </Button>
+              ) : (
+                <Button href="/loginPage" className={styles.secondary}>
+                  Log in to book
+                </Button>
+              )}
+            </Col>
+          </Row>
+        </Form>
+      </div>
     </Container>
   );
 }

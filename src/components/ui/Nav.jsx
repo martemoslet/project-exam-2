@@ -36,6 +36,7 @@ export default function Navbarnav() {
                 <Nav.Link href="/registerPage">Register</Nav.Link>
               </Navbar.Collapse>
             )}
+            <Link to="/loginPage">Login</Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

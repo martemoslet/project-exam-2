@@ -91,6 +91,7 @@ export default function Calendar() {
     const result = await response.json();
     if (response.status === 201 || 204) {
       console.log(result);
+      alert("Booking successful!");
       return result;
     } else {
       alert("Something went wrong");
@@ -131,7 +132,7 @@ export default function Calendar() {
               />
             </Col>
           </Row>
-          <Row>
+          <Row className="inline-flex justify-content-center mt-3">
             <Col xs={4} md={2}>
               <Form.Label>Guests</Form.Label>
               <Form.Control

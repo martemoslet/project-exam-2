@@ -29,7 +29,12 @@ export default function SingleVenue({
   return (
     <Container id={id} className="d-flex justify-content-center mt-4">
       <Row>
-        <Col xs="8" lg="12" className="" style={{ maxWidth: "500px" }}>
+        <Col
+          xs="8"
+          lg="12"
+          className=""
+          style={{ maxWidth: "600px", margin: "auto" }}
+        >
           <div className="text-center">
             <h1 style={{ fontWeight: 300 }}>{name}</h1>
             <p>
@@ -44,8 +49,8 @@ export default function SingleVenue({
           <img
             src={media ? media : missingImg}
             alt={name}
-            height={400}
-            width={500}
+            height="auto"
+            width="100%"
             onError={onImageError}
             style={{ objectFit: "cover" }}
           />

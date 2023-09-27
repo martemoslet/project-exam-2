@@ -15,8 +15,8 @@ export default function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="VenuePage/:id" element={<VenuePage />} />
-        <Route path="registerPage" element={<Register />} />
-        <Route path="loginPage" element={<Login />} />
+        <Route path="RegisterPage" element={<Register />} />
+        <Route path="LoginPage" element={<Login />} />
         <Route path="profilePage/:name" element={<ProfilePage />} />
         <Route path="addVenuePage" element={<AddVenue />} />
         <Route path="updateVenuePage/:id" element={<UpdateVenue />} />

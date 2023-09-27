@@ -32,6 +32,7 @@ export default function Navbarnav() {
               </Navbar.Collapse>
             ) : (
               <Navbar.Collapse className="justify-content-end">
+                <Link to="/loginPage">Login</Link>
                 <Nav.Link href="/loginPage">Login</Nav.Link>
                 <Nav.Link href="/registerPage">Register</Nav.Link>
               </Navbar.Collapse>

@@ -1,0 +1,48 @@
+.primary,
+.secondary,
+.venueManager,
+.addBtn,
+.removeBtn {
+  border: 0;
+  background: none;
+  background-color: #6B19CB;
+  color: white;
+  cursor: pointer;
+  padding: 7px 17px 7px 17px;
+  border-radius: 13px;
+  margin: auto;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+}
+
+.primary:hover {
+  background-color: #4c0f92;
+}
+
+.secondary,
+.addBtn {
+  background-color: #F2EFFF;
+  color: black;
+  font-weight: 300;
+}
+
+.secondary:hover,
+.addBtn:hover {
+  background-color: #ddd8f4;
+  color: black;
+}
+
+.addBtn {
+    padding: 10px 20px 10px 20px;
+    width: 200px;
+    border: none;
+}
+
+.removeBtn {
+  background-color: #008E5D;
+  border: none;
+}
+
+.removeBtn:hover {
+  background-color: #007b50;
+}

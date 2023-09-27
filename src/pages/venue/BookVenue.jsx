@@ -1,82 +1,108 @@
-import { API_HOLIDAZE_URL, } from "../../constants";
+import { API_HOLIDAZE_URL } from "../../constants";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { authFetch } from "../../components/auth/authFetch";
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useEffect } from "react";
+import { Spinner } from "react-bootstrap";
 
 const action = "/bookings";
 
 const schema = yup
-.object({
-venueId: yup
-.string(),
-dateFrom: yup
-.string(),
-dateTo: yup
-.string(),
-guests: yup
-.number()
-.integer()
-})
-.required();
+  .object({
+    venueId: yup.string(),
+    dateFrom: yup.string(),
+    dateTo: yup.string(),
+    guests: yup.number().integer(),
+  })
+  .required();
 
 export default function BookVenue() {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-        } = useForm({
-        resolver: yupResolver(schema),
-        });
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-let { id } = useParams();
+  let { id } = useParams();
 
+  const [data, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-//const refresh = () => window.location.reload(true)
+  useEffect(() => {
+    async function getData(url) {
+      try {
+        setIsLoading(true);
+        setIsError(false);
 
-async function onSubmit(bookingData) {
+        const response = await fetch(url);
+        const json = await response.json();
 
-const bookVenueURL = `${API_HOLIDAZE_URL}${action}`;
+        setData(json);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
-const response = await authFetch(bookVenueURL, {
-headers: {
-"Content-Type": "application/json",
-},
-method: 'POST',
-body: JSON.stringify(bookingData)
-});
+    getData(
+      `https://api.noroff.dev/api/v1/holidaze/venues/${id}/?_bookings=true`
+    );
+  }, [id]);
 
-const result = await response.json()
-if (response.status === 201 || 204) {
-    //refresh();
-    console.log(result)
-return result;
-} else {
-alert("Something went wrong");
-}
-}
+  if (isLoading || !data) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
 
-return (
-<div>
-<form onSubmit={handleSubmit(onSubmit)}>
+  if (isError) {
+    return <div>Error</div>;
+  }
 
-<input {...register("venueId")} value={id} type="hidden" />
+  //const refresh = () => window.location.reload(true)
 
-<label htmlFor="dateFrom">Date from</label>
-<input {...register("dateFrom")} type="date" />
+  async function onSubmit(bookingData) {
+    const bookVenueURL = `${API_HOLIDAZE_URL}${action}`;
 
-<label htmlFor="dateTo">Date to</label>
-<input {...register("dateTo")} type="date" />
+    const response = await authFetch(bookVenueURL, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(bookingData),
+    });
 
-<label htmlFor="guest">Guests</label>
-<input {...register("guests")} type="number" />
+    const result = await response.json();
+    if (response.status === 201 || 204) {
+      //refresh();
+      console.log(result);
+      return result;
+    } else {
+      alert("Something went wrong");
+    }
+  }
 
+  return (
+    <div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input {...register("venueId")} value={id} type="hidden" />
 
+        <label htmlFor="dateFrom">Date from</label>
+        <input {...register("dateFrom")} type="date" />
 
-<input type="submit" />
-</form>
-</div>
-);
+        <label htmlFor="dateTo">Date to</label>
+        <input {...register("dateTo")} type="date" />
+
+        <label htmlFor="guest">Guests</label>
+        <input {...register("guests")} type="number" />
+
+        <input type="submit" />
+      </form>
+    </div>
+  );
 }

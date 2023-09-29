@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import { Link } from "react-router-dom";
 
 export default function Login(profile) {
   const navigate = useNavigate();
@@ -81,12 +82,12 @@ export default function Login(profile) {
             </Button>
             <p className="pt-2">
               Don't have an account yet? Register{" "}
-              <a
-                href="/registerPage"
+              <Link
+                to="/registerPage"
                 style={{ color: "#6B19CB", fontWeight: 600 }}
               >
                 here
-              </a>
+              </Link>
             </p>
           </Form.Group>
         </Row>

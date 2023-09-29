@@ -9,6 +9,7 @@ import YourBookings from "../../pages/profile/YourBookings";
 import YourVenues from "../../pages/profile/YourVenues";
 import { FaPlus } from "react-icons/fa";
 import { missingProfileImg } from "../../constants";
+import { Link } from "react-router-dom";
 
 const onImageError = (e) => {
   e.target.src = missingProfileImg;
@@ -46,10 +47,12 @@ export default function UserProfile({
           {venueManager === false ? <VenueManager /> : ""}
           <div className="mt-4 mb-4">
             {venueManager === true ? (
-              <Button href="/addVenuePage" className={styles.addBtn}>
-                <FaPlus className="me-2" size={15} />
-                Add venue
-              </Button>
+              <Link to="/addVenuePage">
+                <Button className={styles.addBtn}>
+                  <FaPlus className="me-2" size={15} />
+                  Add venue
+                </Button>
+              </Link>
             ) : (
               ""
             )}

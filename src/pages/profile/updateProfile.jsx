@@ -7,12 +7,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import styles from "../../components/ui/Button.module.css";
+import { useNavigate } from "react-router-dom";
 
 const action = "/profiles";
 
 export default function AvatarChange(profileData) {
   const [avatar, setAvatar] = useState([]);
   let { name } = useParams();
+  const navigate = useNavigate();
   const refresh = () => window.location.reload(true);
 
   async function onFormSubmit(event) {
@@ -32,6 +34,7 @@ export default function AvatarChange(profileData) {
     });
     const result = await response.json();
     if (response.status === 201 || 204) {
+      navigate(`/profilePage/${name}`);
       refresh();
       return result;
     } else {

@@ -15,7 +15,7 @@ export default function AvatarChange(profileData) {
   const [avatar, setAvatar] = useState([]);
   let { name } = useParams();
   const navigate = useNavigate();
-  const refresh = () => window.location.reload(true);
+  //const refresh = () => window.location.reload(true);
 
   async function onFormSubmit(event) {
     event.preventDefault();
@@ -34,8 +34,8 @@ export default function AvatarChange(profileData) {
     });
     const result = await response.json();
     if (response.status === 201 || 204) {
-      navigate(`/profilePage/${name}`);
-      refresh();
+      navigate("/");
+      //refresh();
       return result;
     } else {
       alert("Something went wrong");

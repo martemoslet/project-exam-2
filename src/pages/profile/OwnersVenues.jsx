@@ -1,9 +1,11 @@
+import { API_HOLIDAZE_URL } from "../../constants";
 import { authFetch } from "../../components/auth/authFetch";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
-import { useEffect } from "react";
 import VenuesOnOwner from "../../components/profile/VenuesOnOwner";
+
+const action = "/profiles";
 
 export default function OwnersVenues() {
   const [venues, setVenues] = useState(null);
@@ -28,7 +30,7 @@ export default function OwnersVenues() {
       }
     }
 
-    getData(`https://api.noroff.dev/api/v1/holidaze/profiles/${name}/venues`);
+    getData(`${API_HOLIDAZE_URL}${action}/${name}/venues`);
   }, [name]);
 
   if (isLoading || !venues) {

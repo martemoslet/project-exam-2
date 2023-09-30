@@ -80,17 +80,18 @@ export default function Login(profile) {
             <Button type="submit" className={styles.primary}>
               Login
             </Button>
-            <p className="pt-2">
-              Don't have an account yet? Register{" "}
-              <Link
-                to="/registerPage"
-                style={{ color: "#6B19CB", fontWeight: 600 }}
-              >
-                here
-              </Link>
-            </p>
           </Form.Group>
         </Row>
+        <p className="pt-3 text-center">
+          Don't have an account yet? Register{" "}
+          <Link
+            to="/registerPage"
+            style={{ color: "#6B19CB", fontWeight: 600 }}
+            className="registerlink"
+          >
+            here
+          </Link>
+        </p>
       </Form>
     </Container>
   );

@@ -3,7 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState, useEffect } from "react";
 import { API_HOLIDAZE_URL } from "../../constants";
 import { authFetch } from "../auth/authFetch";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import styles from "../../components/ui/Button.module.css";
 import Button from "react-bootstrap/Button";
@@ -148,9 +148,9 @@ export default function Calendar() {
                   Book venue
                 </Button>
               ) : (
-                <Button href="/loginPage" className={styles.secondary}>
-                  Log in to book
-                </Button>
+                <Link to="/loginPage">
+                  <Button className={styles.secondary}>Log in to book</Button>
+                </Link>
               )}
             </Col>
           </Row>

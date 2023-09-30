@@ -34,3 +34,16 @@ a {
 .calendar {
   text-align: center;
 }
+
+.active,
+.navlink:hover {
+  text-decoration: underline;
+}
+
+.profilelink:hover {
+  color: #6B19CB;
+}
+
+.registerlink:hover {
+  font-style: italic;
+}

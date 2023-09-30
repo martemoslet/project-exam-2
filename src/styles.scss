@@ -1,7 +1,5 @@
 @import "./variables";
 
-$light: #ffffff;
-
 h1,
 h2,
 h3 {
@@ -46,4 +44,12 @@ a {
 
 .registerlink:hover {
   font-style: italic;
+}
+
+.searchResult {
+  padding: 10px 15px 10px 15px;
+}
+
+.searchResult:hover {
+  background-color: #F2EFFF;
 }

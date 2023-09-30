@@ -1,13 +1,12 @@
 import { API_HOLIDAZE_URL } from "../../constants";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { authFetch } from "../../components/auth/authFetch";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import styles from "../../components/ui/Button.module.css";
-import { useNavigate } from "react-router-dom";
 
 const action = "/profiles";
 
@@ -15,7 +14,6 @@ export default function AvatarChange(profileData) {
   const [avatar, setAvatar] = useState([]);
   let { name } = useParams();
   const navigate = useNavigate();
-  //const refresh = () => window.location.reload(true);
 
   async function onFormSubmit(event) {
     event.preventDefault();
@@ -35,7 +33,6 @@ export default function AvatarChange(profileData) {
     const result = await response.json();
     if (response.status === 201 || 204) {
       navigate("/");
-      //refresh();
       return result;
     } else {
       alert("Something went wrong");

@@ -1,7 +1,6 @@
 import { API_HOLIDAZE_URL } from "../../constants";
 import { authFetch } from "../../components/auth/authFetch";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styles from "../../components/ui/Button.module.css";
 import Button from "react-bootstrap/Button";
 

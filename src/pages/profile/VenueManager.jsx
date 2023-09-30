@@ -1,10 +1,9 @@
 import { API_HOLIDAZE_URL } from "../../constants";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { authFetch } from "../../components/auth/authFetch";
 import Button from "react-bootstrap/Button";
 import styles from "../../components/ui/Button.module.css";
-import { useNavigate } from "react-router-dom";
 
 const action = "/profiles";
 

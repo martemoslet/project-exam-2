@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 import { authFetch } from "../../components/auth/authFetch";
 import Button from "react-bootstrap/Button";
 import styles from "../../components/ui/Button.module.css";
+import { useNavigate } from "react-router-dom";
 
 const action = "/profiles";
 
 export default function VenueManager(profileData) {
   const [venueManager, setVenueManager] = useState([]);
   let { name } = useParams();
+  const navigate = useNavigate();
 
   async function onFormSubmit(event) {
     event.preventDefault();
@@ -28,8 +30,8 @@ export default function VenueManager(profileData) {
     });
     const result = await response.json();
     if (response.status === 201 || 204) {
-      //alert("Update successful");
-      console.log(result);
+      alert("You are now a venue manager");
+      navigate("/");
       return result;
     } else {
       alert("Something went wrong");

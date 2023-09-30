@@ -1,9 +1,9 @@
+import { API_HOLIDAZE_URL } from "../../constants";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { authFetch } from "../../components/auth/authFetch";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import RemoveVenue from "./DeleteVenue";
 import { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
@@ -13,6 +13,8 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
+
+const action = "/venues";
 
 const schema = yup
   .object({
@@ -66,7 +68,7 @@ export default function UpdateVenue() {
       }
     }
 
-    getData(`https://api.noroff.dev/api/v1/holidaze/venues/${id}`);
+    getData(`${API_HOLIDAZE_URL}${action}/${id}`);
   }, [id]);
 
   if (isLoading || !data) {
@@ -83,16 +85,13 @@ export default function UpdateVenue() {
 
   async function onSubmit(data) {
     data.media = data.media.split(",");
-    const response = await authFetch(
-      `https://api.noroff.dev/api/v1/holidaze/venues/${id}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "PUT",
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await authFetch(`${API_HOLIDAZE_URL}${action}/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
 
     const result = await response.json();
     if (response.status === 201 || 204) {

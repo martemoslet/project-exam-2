@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import * as storage from "../auth/storage";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logout from "../profile/Logout";
 import { FaRegUser } from "react-icons/fa";
 
@@ -23,19 +23,21 @@ export default function Navbarnav() {
             {profile ? (
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
-                  <Link to={`/profilePage/${profile.name}`}>
-                    <FaRegUser size={18} className="me-2" />
-                  </Link>
+                  <NavLink to={`/profilePage/${profile.name}`}>
+                    <FaRegUser size={18} className="me-2 profilelink" />
+                  </NavLink>
 
                   <Logout />
                 </Navbar.Text>
               </Navbar.Collapse>
             ) : (
               <Navbar.Collapse className="justify-content-end">
-                <Link to="/loginPage" className="pe-2">
+                <NavLink to="/loginPage" className="pe-2 navlink">
                   Login
-                </Link>
-                <Link to="/registerPage">Register</Link>
+                </NavLink>
+                <NavLink to="/registerPage" className="navlink">
+                  Register
+                </NavLink>
               </Navbar.Collapse>
             )}
           </Nav>

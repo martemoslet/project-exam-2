@@ -1,12 +1,14 @@
+import { API_HOLIDAZE_URL } from "../../constants";
 import { useState } from "react";
 import * as storage from "../../components/auth/storage";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styles from "../../components/ui/Button.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
+
+const action = "/login";
 
 export default function Login(profile) {
   const navigate = useNavigate();
@@ -21,16 +23,13 @@ export default function Login(profile) {
       password,
     };
 
-    const response = await fetch(
-      "https://api.noroff.dev/api/v1/holidaze/auth/login",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(body),
-      }
-    );
+    const response = await fetch(`${API_HOLIDAZE_URL}/auth${action}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(body),
+    });
 
     const { accessToken, ...user } = await response.json();
 

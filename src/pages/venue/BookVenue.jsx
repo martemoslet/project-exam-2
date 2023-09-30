@@ -1,11 +1,10 @@
-import { API_HOLIDAZE_URL } from "../../constants";
-import { useState } from "react";
+import { API_HOLIDAZE_URL, BOOKINGS } from "../../constants";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { authFetch } from "../../components/auth/authFetch";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useEffect } from "react";
 import { Spinner } from "react-bootstrap";
 
 const action = "/bookings";
@@ -47,9 +46,7 @@ export default function BookVenue() {
       }
     }
 
-    getData(
-      `https://api.noroff.dev/api/v1/holidaze/venues/${id}/?_bookings=true`
-    );
+    getData(`${API_HOLIDAZE_URL}/venues/${id}${BOOKINGS}`);
   }, [id]);
 
   if (isLoading || !data) {
@@ -64,8 +61,6 @@ export default function BookVenue() {
     return <div>Error</div>;
   }
 
-  //const refresh = () => window.location.reload(true)
-
   async function onSubmit(bookingData) {
     const bookVenueURL = `${API_HOLIDAZE_URL}${action}`;
 
@@ -79,8 +74,6 @@ export default function BookVenue() {
 
     const result = await response.json();
     if (response.status === 201 || 204) {
-      //refresh();
-      console.log(result);
       return result;
     } else {
       alert("Something went wrong");

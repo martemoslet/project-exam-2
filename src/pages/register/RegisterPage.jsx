@@ -1,3 +1,4 @@
+import { API_HOLIDAZE_URL } from "../../constants";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -8,6 +9,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+
+const action = "/register";
 
 const schema = yup
   .object({
@@ -42,16 +45,13 @@ export default function Register() {
   const navigate = useNavigate();
 
   async function onSubmit(data) {
-    const response = await authFetch(
-      "https://api.noroff.dev/api/v1/holidaze/auth/register",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await authFetch(`${API_HOLIDAZE_URL}/auth${action}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    });
 
     const result = await response.json();
     if (response.status === 201 || 204) {

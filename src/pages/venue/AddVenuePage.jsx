@@ -1,3 +1,4 @@
+import { API_HOLIDAZE_URL } from "../../constants";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -9,6 +10,8 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
+
+const action = "/venues";
 
 const schema = yup
   .object({
@@ -50,20 +53,16 @@ export default function AddVenue() {
 
   async function onSubmit(data) {
     data.media = data.media.split(",");
-    const response = await authFetch(
-      "https://api.noroff.dev/api/v1/holidaze/venues",
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await authFetch(`${API_HOLIDAZE_URL}${action}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    });
 
     const result = await response.json();
     if (response.status === 201 || 204) {
-      console.log(result);
       navigate("/");
       return result;
     } else {

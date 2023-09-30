@@ -1,7 +1,7 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState, useEffect } from "react";
-import { API_HOLIDAZE_URL } from "../../constants";
+import { API_HOLIDAZE_URL, BOOKINGS } from "../../constants";
 import { authFetch } from "../auth/authFetch";
 import { useParams, Link } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
@@ -48,9 +48,7 @@ export default function Calendar() {
       }
     }
 
-    getData(
-      `https://api.noroff.dev/api/v1/holidaze/venues/${id}/?_bookings=true`
-    );
+    getData(`${API_HOLIDAZE_URL}/venues/${id}${BOOKINGS}`);
   }, [id]);
 
   if (isLoading || !data) {

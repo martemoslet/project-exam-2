@@ -1,18 +1,20 @@
+import { API_HOLIDAZE_URL, SORT } from "../../constants";
 import { useEffect, useState } from "react";
-import VenueList from "../../components/venues/VenueList"
-import Spinner from 'react-bootstrap/Spinner';
+import VenueList from "../../components/venues/VenueList";
+import Spinner from "react-bootstrap/Spinner";
 import SearchBar from "../../components/search/Search";
 import SearchList from "../../components/search/SearchList";
 
+const action = "/venues";
 
 export default function Home() {
-    const [venues, setVenues] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+  const [venues, setVenues] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-    useEffect(() => {
-        async function getData(url) {
-            try {
+  useEffect(() => {
+    async function getData(url) {
+      try {
         setIsLoading(true);
         setIsError(false);
 
@@ -27,15 +29,17 @@ export default function Home() {
       }
     }
 
-    getData(`https://api.noroff.dev/api/v1/holidaze/venues/?sort=created&sortOrder=desc`);
+    getData(`${API_HOLIDAZE_URL}${action}${SORT}`);
   }, []);
 
   const [searchResults, setSearchResults] = useState([]);
 
   if (isLoading || !venues) {
-    return <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-            </Spinner>;
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
   }
 
   if (isError) {
@@ -44,11 +48,19 @@ export default function Home() {
 
   return (
     <>
-    <div className="search">
+      <div
+        className="search"
+        style={{
+          width: "500px",
+          margin: "auto",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <SearchBar setSearchResults={setSearchResults} />
         <SearchList searchResults={searchResults} />
       </div>
-    <VenueList venues={venues} />
+      <VenueList venues={venues} />
     </>
   );
 }

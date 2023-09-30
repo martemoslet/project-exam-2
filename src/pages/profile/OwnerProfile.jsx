@@ -1,13 +1,15 @@
+import { API_HOLIDAZE_URL, VENUES } from "../../constants";
 import { authFetch } from "../../components/auth/authFetch";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
-import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import OwnersVenues from "./OwnersVenues";
 import { missingProfileImg } from "../../constants";
+
+const action = "/profiles";
 
 const onImageError = (e) => {
   e.target.src = missingProfileImg;
@@ -36,9 +38,7 @@ export default function OwnerProfile() {
       }
     }
 
-    getData(
-      `https://api.noroff.dev/api/v1/holidaze/profiles/${name}/?_venue=true`
-    );
+    getData(`${API_HOLIDAZE_URL}${action}/${name}${VENUES}`);
   }, [name]);
 
   if (isLoading || !data) {

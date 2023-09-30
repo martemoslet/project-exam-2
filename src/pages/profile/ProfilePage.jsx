@@ -1,9 +1,11 @@
+import { API_HOLIDAZE_URL, BOOKINGS, VENUES } from "../../constants";
 import { authFetch } from "../../components/auth/authFetch";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
-import { useEffect } from "react";
 import UserProfile from "../../components/profile/Profile";
+
+const action = "/profiles";
 
 export default function ProfilePage() {
   const [data, setData] = useState(null);
@@ -28,9 +30,7 @@ export default function ProfilePage() {
       }
     }
 
-    getData(
-      `https://api.noroff.dev/api/v1/holidaze/profiles/${name}/?_venue=true/?_bookings=true`
-    );
+    getData(`${API_HOLIDAZE_URL}${action}/${name}${VENUES}${BOOKINGS}`);
   }, [name]);
 
   if (isLoading || !data) {

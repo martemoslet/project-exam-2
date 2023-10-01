@@ -47,6 +47,7 @@ const SearchBar = ({ setSearchResults }) => {
               onChange={(e) => handleChange(e.target.value)}
               value={searchInput}
               style={{ maxWidth: 500, margin: "auto" }}
+              aria-label="Search"
             />
           </Col>
         </Row>

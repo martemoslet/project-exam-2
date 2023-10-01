@@ -98,7 +98,12 @@ export default function Calendar() {
 
   return (
     <Container className="mt-4">
-      <h1 className="text-center pt-4 pb-4 calendar">Book your stay</h1>
+      <h2
+        className="text-center pt-4 pb-4 calendar"
+        style={{ fontSize: "2rem" }}
+      >
+        Book your stay
+      </h2>
       <div className="calendar">
         <Form onSubmit={onSubmit}>
           <Form.Control value={id} id="id" readOnly hidden />

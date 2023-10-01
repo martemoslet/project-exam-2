@@ -24,7 +24,11 @@ export default function Navbarnav() {
               <Navbar.Collapse className="justify-content-end">
                 <Navbar.Text>
                   <NavLink to={`/profilePage/${profile.name}`}>
-                    <FaRegUser size={18} className="me-2 profilelink" />
+                    <FaRegUser
+                      size={18}
+                      className="me-2 profilelink"
+                      aria-label="Profile"
+                    />
                   </NavLink>
 
                   <Logout />

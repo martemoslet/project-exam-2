@@ -34,7 +34,7 @@ The task was to build a modern accommodation booking application with the requir
 1. Clone the repo:
 
 ```bash
-git clone https://github.com/martemoslet/js-frameworks-ca.git
+git clone https://github.com/martemoslet/project-exam-2.git
 ```
 
 2. Install the dependencies:

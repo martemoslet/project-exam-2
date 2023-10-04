@@ -1,12 +1,54 @@
-# Getting Started with Create React App
+# Project Exam 2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://fancy-croquembouche-2bbd3d.netlify.app/
 
-## Available Scripts
+<img width="1440" alt="Skjermbilde 2023-10-04 kl  20 44 59" src="https://github.com/martemoslet/project-exam-2/assets/95755829/7878c29a-b5eb-4b38-9e00-8618b1ee8c7e">
+
+For this project exam the goal is to take the skills learned over the past two years and create a booking site called Holidaze.
+
+## Description
+
+The task was to build a modern accommodation booking application with the required features:
+- A user may view a list of venues, search for a specific venue and view a specific venue
+- A user may view a calendar with available dates for a venue
+- A user with a stud.noroff.no email may register as a customer or a venue manager
+- A register customer may create a booking and view their upcoming bookings
+- A venue manager may create a venue, update or delete a venue they manage and view bookings for a venue they manage
+- A register user may update their avatar
+
+## Built with
+
+- React
+- Bootstrap
+- React Bootstrap
+- JavaScrpit
+- HTML
+- CSS
+- SASS
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Getting started
+
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/martemoslet/js-frameworks-ca.git
+```
+
+2. Install the dependencies:
+
+```
+npm install
+```
+### Running
 
 In the project directory, you can run:
 
-### `npm start`
+```
+npm start
+```
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,12 +56,16 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+```
+npm test
+```
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+```
+npm run build
+```
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -29,7 +75,9 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+```
+npm run eject
+```
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
@@ -68,3 +116,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Contributing
+
+To contribute make sure to open a pull request so code can be reviewed
+
+## Contact
+
+If you want to get in touch, this is where you can contact me:
+
+[My Instagram page](https://www.instagram.com/martemo/)
+
+[My LinkedIn page](https://www.linkedin.com/in/marte-moslet-728781138)
